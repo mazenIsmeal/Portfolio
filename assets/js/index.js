@@ -74,18 +74,23 @@ window.addEventListener("scroll", function () {
 var toggleMode = document.querySelector("#theme-toggle-button");
 var html = document.querySelector("html");
 
+if (localStorage.getItem("dark") === null) {
+  html.classList.add("dark");
+  localStorage.setItem("dark", "dark");
+} else if (localStorage.getItem("dark") === "dark") {
+  html.classList.add("dark");
+} else {
+  html.classList.remove("dark");
+}
+
 toggleMode.addEventListener("click", function () {
   html.classList.toggle("dark");
+
   localStorage.setItem(
     "dark",
     html.classList.contains("dark") ? "dark" : "light"
   );
 });
-if (localStorage.getItem("dark") === "dark") {
-  html.classList.add("dark");
-} else {
-  html.classList.remove("dark");
-}
 
 // Selected font
 var btnSelectedFont = document.querySelectorAll(".font-option");
